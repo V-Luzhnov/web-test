@@ -2,7 +2,6 @@ package org.hw3;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author Vitalii Luzhnov
  * @version 12.04.2022
  */
-public class App2 {
+public class AddToCart {
     static Properties prop = new Properties();
 
     public static void main(String[] args) throws IOException {
@@ -33,13 +32,31 @@ public class App2 {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-        driver.get(prop.getProperty("PATH_URL"));
+        driver.get(prop.getProperty("PATH_URL") + "/catalog/odezhda/sportivnye-bryuki/M000169-34314/");
 
-        WebElement search = driver.findElement(By.id("header-search-input"));
-        WebElement buttonSearch = driver.findElement(By.xpath(".//button[@type='submit'][1]"));
+        WebElement buttonSizeL = driver.findElement(By.id("size_1_1465774"));
+        WebElement buttonSizeM = driver.findElement(By.id("size_1_1465773"));
+        WebElement buttonSizeS = driver.findElement(By.id("size_1_1465772"));
+        WebElement buttonAddToCard = driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
 
-        search.sendKeys("Рубашка");
-        buttonSearch.click();
+        buttonSizeL.click();
+        buttonSizeM.click();
+        buttonSizeS.click();
+        buttonAddToCard.click();
+
+        driver.get(prop.getProperty("PATH_URL") + "/catalog/odezhda/futbolki/M0610278-70132/");
+
+        buttonSizeL = driver.findElement(By.id("size_1_1465482"));
+        buttonSizeM = driver.findElement(By.id("size_1_1465481"));
+        buttonSizeS = driver.findElement(By.id("size_1_1465480"));
+        buttonAddToCard = driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
+
+        buttonSizeL.click();
+        buttonSizeM.click();
+        buttonSizeS.click();
+        buttonAddToCard.click();
+
+        driver.get(prop.getProperty("PATH_URL") + "/order/cart/");
 
 //        driver.quit();
     }

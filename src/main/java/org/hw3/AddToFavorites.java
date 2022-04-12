@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author Vitalii Luzhnov
  * @version 12.04.2022
  */
-public class App3 {
+public class AddToFavorites {
     static Properties prop = new Properties();
 
     public static void main(String[] args) throws IOException {
@@ -34,29 +34,17 @@ public class App3 {
 
         driver.get(prop.getProperty("PATH_URL") + "/catalog/odezhda/sportivnye-bryuki/M000169-34314/");
 
-        WebElement buttonSizeL = driver.findElement(By.id("size_1_1465774"));
-        WebElement buttonSizeM = driver.findElement(By.id("size_1_1465773"));
-        WebElement buttonSizeS = driver.findElement(By.id("size_1_1465772"));
-        WebElement buttonAddToCard = driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
+        WebElement buttonAddToFavorites = driver.findElement(By.xpath(".//div[@class='cardFav']"));
 
-        buttonSizeL.click();
-        buttonSizeM.click();
-        buttonSizeS.click();
-        buttonAddToCard.click();
+        buttonAddToFavorites.click();
 
         driver.get(prop.getProperty("PATH_URL") + "/catalog/odezhda/futbolki/M0610278-70132/");
 
-        buttonSizeL = driver.findElement(By.id("size_1_1465482"));
-        buttonSizeM = driver.findElement(By.id("size_1_1465481"));
-        buttonSizeS = driver.findElement(By.id("size_1_1465480"));
-        buttonAddToCard = driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
+        buttonAddToFavorites = driver.findElement(By.xpath(".//div[@class='cardFav']"));
 
-        buttonSizeL.click();
-        buttonSizeM.click();
-        buttonSizeS.click();
-        buttonAddToCard.click();
+        buttonAddToFavorites.click();
 
-        driver.get(prop.getProperty("PATH_URL") + "/order/cart/");
+        driver.get(prop.getProperty("PATH_URL") + "/account/favorites/");
 
 //        driver.quit();
     }

@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Unit test for simple App.
  */
-public class App1Test
+public class AuthorizationTest
 {
     /**
      * Rigorous Test :-)

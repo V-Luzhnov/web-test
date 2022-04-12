@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author Vitalii Luzhnov
  * @version 12.04.2022
  */
-public class App4 {
+public class Search {
     static Properties prop = new Properties();
 
     public static void main(String[] args) throws IOException {
@@ -32,19 +32,13 @@ public class App4 {
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 
-        driver.get(prop.getProperty("PATH_URL") + "/catalog/odezhda/sportivnye-bryuki/M000169-34314/");
+        driver.get(prop.getProperty("PATH_URL"));
 
-        WebElement buttonAddToFavorites = driver.findElement(By.xpath(".//div[@class='cardFav']"));
+        WebElement search = driver.findElement(By.id("header-search-input"));
+        WebElement buttonSearch = driver.findElement(By.xpath(".//button[@type='submit'][1]"));
 
-        buttonAddToFavorites.click();
-
-        driver.get(prop.getProperty("PATH_URL") + "/catalog/odezhda/futbolki/M0610278-70132/");
-
-        buttonAddToFavorites = driver.findElement(By.xpath(".//div[@class='cardFav']"));
-
-        buttonAddToFavorites.click();
-
-        driver.get(prop.getProperty("PATH_URL") + "/account/favorites/");
+        search.sendKeys("Рубашка");
+        buttonSearch.click();
 
 //        driver.quit();
     }
