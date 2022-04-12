@@ -6,11 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -21,11 +19,9 @@ import java.util.concurrent.TimeUnit;
  * @version 12.04.2022
  */
 public class App3 {
-
     static Properties prop = new Properties();
 
     public static void main(String[] args) throws IOException {
-
         loadProperties();
 
         WebDriverManager.chromedriver().setup();
@@ -63,7 +59,6 @@ public class App3 {
         driver.get(prop.getProperty("PATH_URL") + "/order/cart/");
 
 //        driver.quit();
-
     }
 
     private static void loadProperties() throws IOException {

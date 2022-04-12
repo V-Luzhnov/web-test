@@ -19,11 +19,9 @@ import java.util.concurrent.TimeUnit;
  * @version 12.04.2022
  */
 public class App4 {
-
     static Properties prop = new Properties();
 
     public static void main(String[] args) throws IOException {
-
         loadProperties();
 
         WebDriverManager.chromedriver().setup();
@@ -49,7 +47,6 @@ public class App4 {
         driver.get(prop.getProperty("PATH_URL") + "/account/favorites/");
 
 //        driver.quit();
-
     }
 
     private static void loadProperties() throws IOException {

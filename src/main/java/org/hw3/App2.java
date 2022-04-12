@@ -20,11 +20,9 @@ import java.util.concurrent.TimeUnit;
  * @version 12.04.2022
  */
 public class App2 {
-
     static Properties prop = new Properties();
 
     public static void main(String[] args) throws IOException {
-
         loadProperties();
 
         WebDriverManager.chromedriver().setup();
@@ -44,7 +42,6 @@ public class App2 {
         buttonSearch.click();
 
 //        driver.quit();
-
     }
 
     private static void loadProperties() throws IOException {

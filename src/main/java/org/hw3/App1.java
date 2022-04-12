@@ -18,11 +18,9 @@ import java.util.concurrent.TimeUnit;
  * @version 12.04.2022
  */
 public class App1 {
-
     static Properties prop = new Properties();
 
     public static void main(String[] args) throws IOException {
-
         loadProperties();
 
         WebDriverManager.chromedriver().setup();
