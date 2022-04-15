@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @version 12.04.2022
  */
 public class Authorization {
+
     static Properties prop = new Properties();
 
     public static void main(String[] args) throws IOException {
@@ -31,12 +32,12 @@ public class Authorization {
 
         driver.get(prop.getProperty("PATH_URL") + "account/profile/");
 
-        WebElement login = driver.findElement(By.xpath(".//input[@name='USER_LOGIN']"));
-        WebElement password = driver.findElement(By.xpath(".//input[@name='USER_PASSWORD']"));
+        WebElement l = driver.findElement(By.xpath(".//input[@name='USER_LOGIN']"));
+        WebElement p = driver.findElement(By.xpath(".//input[@name='USER_PASSWORD']"));
         WebElement buttonEntry = driver.findElement(By.xpath(".//button[@class='popup-login__btn-login']"));
 
-        login.sendKeys(prop.getProperty("USER_LOGIN"));
-        password.sendKeys(prop.getProperty("USER_PASSWORD"));
+        l.sendKeys(readFile("l"));
+        p.sendKeys(readFile("p"));
         buttonEntry.click();
 
 //        driver.quit();
@@ -46,5 +47,21 @@ public class Authorization {
         try(FileInputStream configFile = new FileInputStream("src/main/resources/hw3.properties")){
             prop.load(configFile);
         }
+    }
+
+    public static StringBuilder readFile(String n) {
+
+        StringBuilder rez = new StringBuilder();
+        try(FileReader reader = new FileReader("src/main/resources/hw3_" + n + ".txt"))
+        {
+            int c;
+            while((c=reader.read())!=-1) {
+                rez.append((char) c);
+            }
+        }
+        catch(IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rez;
     }
 }
