@@ -5,13 +5,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.function.BooleanSupplier;
 
 public class MaviTest extends AbstractTest{
 
@@ -24,10 +18,13 @@ public class MaviTest extends AbstractTest{
         //Если авторизован, то выйти
         if (isDisplayed(By.xpath("//a[@href='/?logout=yes']"))) {
             getDriver().findElement(By.xpath("//a[@href='/?logout=yes']")).click();
+            getDriver().findElement(By.xpath("//span[@class='headerAccBtn']")).click();
         }
 
-//        new WebDriverWait(getDriver(), Duration.ofSeconds(3)).until(ExpectedConditions.urlContains("https://ru.mavi.com/account/profile/"));
         Assertions.assertTrue(getDriver().getTitle().contains("Авторизация"), "Страница входа недоступна");
+
+        getDriver().findElement(By.xpath(".//input[@name='USER_LOGIN']")).clear();
+        getDriver().findElement(By.xpath(".//input[@name='USER_PASSWORD']")).clear();
 
         Actions search = new Actions(getDriver());//
         search.sendKeys(getDriver().findElement(By.xpath(".//input[@name='USER_LOGIN']")), getL())
@@ -36,13 +33,7 @@ public class MaviTest extends AbstractTest{
                 .build()
                 .perform();
 
-//        Thread.sleep(100); //время на авторизацию
         Assertions.assertEquals("Личные данные", getDriver().findElement(By.xpath(".//div[@class='prTitle']")).getText());
-
-//        //Выйти, если надо
-//        if (isDisplayed(By.xpath("//a[@href='/?logout=yes']"))) {
-//            getDriver().findElement(By.xpath("//a[@href='/?logout=yes']")).click();
-//        }
     }
 
     boolean isDisplayed(By by) {
