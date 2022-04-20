@@ -34,26 +34,30 @@ public class AddToCart {
 
         driver.get(prop.getProperty("PATH_URL") + "/catalog/odezhda/sportivnye-bryuki/M000169-34314/");
 
-        WebElement buttonSizeL = driver.findElement(By.id("size_1_1465774"));
-        WebElement buttonSizeM = driver.findElement(By.id("size_1_1465773"));
-        WebElement buttonSizeS = driver.findElement(By.id("size_1_1465772"));
+        WebElement buttonSize = driver.findElement(By.xpath("(//div[@class='cardSize']//*[contains(@type,'radio') and not(@disabled)])[1]"));
+//        WebElement buttonSizeL = driver.findElement(By.id("size_1_1465774"));
+//        WebElement buttonSizeM = driver.findElement(By.id("size_1_1465773"));
+//        WebElement buttonSizeS = driver.findElement(By.id("size_1_1465772"));
         WebElement buttonAddToCard = driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
 
-        buttonSizeL.click();
-        buttonSizeM.click();
-        buttonSizeS.click();
+        buttonSize.click();
+//        buttonSizeL.click();
+//        buttonSizeM.click();
+//        buttonSizeS.click();
         buttonAddToCard.click();
 
         driver.get(prop.getProperty("PATH_URL") + "/catalog/odezhda/futbolki/M0610278-70132/");
 
-        buttonSizeL = driver.findElement(By.id("size_1_1465482"));
-        buttonSizeM = driver.findElement(By.id("size_1_1465481"));
-        buttonSizeS = driver.findElement(By.id("size_1_1465480"));
+        buttonSize = driver.findElement(By.xpath("(//div[@class='cardSize']//*[contains(@type,'radio') and not(@disabled)])[1]"));
+//        buttonSizeL = driver.findElement(By.id("size_1_1465482"));
+//        buttonSizeM = driver.findElement(By.id("size_1_1465481"));
+//        buttonSizeS = driver.findElement(By.id("size_1_1465480"));
         buttonAddToCard = driver.findElement(By.xpath("(//button[@type='submit'])[2]"));
 
-        buttonSizeL.click();
-        buttonSizeM.click();
-        buttonSizeS.click();
+        buttonSize.click();
+//        buttonSizeL.click();
+//        buttonSizeM.click();
+//        buttonSizeS.click();
         buttonAddToCard.click();
 
         driver.get(prop.getProperty("PATH_URL") + "/order/cart/");
