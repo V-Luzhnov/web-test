@@ -35,7 +35,7 @@ public class Search {
         driver.get(prop.getProperty("PATH_URL"));
 
         WebElement search = driver.findElement(By.id("header-search-input"));
-        WebElement buttonSearch = driver.findElement(By.xpath(".//button[@type='submit'][1]"));
+        WebElement buttonSearch = driver.findElement(By.xpath("(.//button[@type='submit'])[1]"));
 
         search.sendKeys("Рубашка");
         buttonSearch.click();
