@@ -48,7 +48,7 @@ public class PropertiesForTest {
 
     public static StringBuilder getP() { return readFile("p"); }
 
-    public static StringBuilder readFile(String n) {
+    private static StringBuilder readFile(String n) {
         StringBuilder rez = new StringBuilder();
         try(FileReader reader = new FileReader("src/test/resources/test_" + n + ".txt"))
         {

@@ -1,12 +1,9 @@
 package org.hw6.mavi;
 
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-
-import javax.swing.*;
 
 public class HeaderSide extends AbstractPage {
 
@@ -14,20 +11,27 @@ public class HeaderSide extends AbstractPage {
     private WebElement headerSearchInput;
 
     @FindBy(xpath = "(.//button[@type='submit'])[1]")
-    private WebElement buttonSearch;
+    private WebElement searchBtn;
+
+    @FindBy(xpath = ".//span[@class='headerAccBtn']")
+    private WebElement headerAccBtn;
 
     public HeaderSide(WebDriver driver) {
         super(driver);
     }
 
     public HeaderSide setHeaderSearchInput(String headerSearchInput){
-        this.headerSearchInput.sendKeys(headerSearchInput, Keys.ENTER);
+        this.headerSearchInput.sendKeys(headerSearchInput);
         return this;
     }
 
-    public HeaderSide clickButtonSearch() {
-        buttonSearch.click();
+    public HeaderSide clickSearchBtn() {
+        this.searchBtn.click();
         return this;
+    }
+
+    public void clickHeaderAccBtn() {
+        this.headerAccBtn.click();
     }
 
     public void performSearch(String searchText) {
@@ -35,7 +39,7 @@ public class HeaderSide extends AbstractPage {
         Actions search = new Actions(getDriver());
         search
                 .sendKeys(this.headerSearchInput, searchText)
-                .click(this.buttonSearch)
+                .click(this.searchBtn)
                 .build()
                 .perform();
     }

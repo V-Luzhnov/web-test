@@ -12,15 +12,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.concurrent.TimeUnit;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.Duration;
 
 /**
- * Web UI Java. Homework 5
+ * Web UI Java. Homework 6
  *
  * @author Vitalii Luzhnov
- * @version 20.04.2022
+ * @version 22.04.2022
  */
 public abstract class AbstractTest {
+
+    final static java.util.Properties prop = new java.util.Properties();
 
     private static WebDriver driver;
 
@@ -32,33 +37,71 @@ public abstract class AbstractTest {
         //options.addArguments("--headless");
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+//        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 
     @BeforeEach
     void goTo(){
-        Assertions.assertDoesNotThrow( ()-> driver.navigate().to(PropertiesForTest.getURL()),
-                "Страница недоступна");
+        Assertions.assertDoesNotThrow( ()-> driver.navigate().to(getURL()), "Страница недоступна");
 
-        if (isDisplayed(By.xpath(".//div[@class='cookiesInformBtn']"))) {
-            getDriver().findElement(By.xpath(".//div[@class='cookiesInformBtn']")).click();
-        }
-    }
-
-    boolean isDisplayed(By by) {
-        try {
-            return getDriver().findElement(by).isDisplayed();
-        } catch (NoSuchElementException e) {
-            return false;
+        // закрыть сообщение о куках, если оно есть, нажатием ОК
+        if (new MaviMainPage(getDriver()).isDisplayedCookiesInformBtn()) {
+            new MaviMainPage(getDriver()).clickCookiesInformBtn();
         }
     }
 
     @AfterAll
     static void close(){
-        driver.quit();
+//        if(driver !=null) driver.quit();
     }
 
     public static WebDriver getDriver() {
         return driver;
+    }
+
+    private static void loadProperties() throws IOException {
+        try(FileInputStream configFile = new FileInputStream("src/test/resources/propertiesForTest.properties")){
+            prop.load(configFile);
+        }
+    }
+
+    public static String getURL() throws IOException {
+        loadProperties();
+        return prop.getProperty("PATH_URL");
+    }
+
+    public static String getURLbryuki() throws IOException {
+        loadProperties();
+        return prop.getProperty("PATH_URL_BRYUKI");
+    }
+
+    public static String getURLfutbolki() throws IOException {
+        loadProperties();
+        return prop.getProperty("PATH_URL_FUTBOLKI");
+    }
+
+    public static String getSearchObject() throws IOException {
+        loadProperties();
+        return prop.getProperty("SEARCH_OBJECT");
+    }
+
+    public static StringBuilder getL() { return readFile("l"); }
+
+    public static StringBuilder getP() { return readFile("p"); }
+
+    private static StringBuilder readFile(String n) {
+        StringBuilder rez = new StringBuilder();
+        try(FileReader reader = new FileReader("src/test/resources/test_" + n + ".txt"))
+        {
+            int c;
+            while((c=reader.read())!=-1) {
+                rez.append((char) c);
+            }
+        }
+        catch(IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rez;
     }
 }
