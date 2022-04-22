@@ -1,22 +1,37 @@
 package org.hw6.mavi;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+/**
+ * Web UI Java. Homework 6
+ *
+ * @author Vitalii Luzhnov
+ * @version 22.04.2022
+ */
 public class AccountMenu extends AbstractPage {
 
-    @FindBy(xpath = ".//a[@href='/?logout=yes']")
+    private final String XPATH_logoutBtn = ".//a[@href='/?logout=yes']";
+    private final String XPATH_prTitle = ".//div[@class='prTitle']";
+
+    @FindBy(xpath = XPATH_logoutBtn)
     private WebElement logoutBtn;
+
+    @FindBy(xpath = XPATH_prTitle)
+    private WebElement prTitle;
 
     public AccountMenu(WebDriver driver) {
         super(driver);
     }
 
-    By logoutBtnPath() {
-        return By.xpath(".//a[@href='/?logout=yes']");
+    public By logoutBtnPath() {
+        return By.xpath(XPATH_logoutBtn);
+    }
+
+    public By prTitlePath() {
+        return By.xpath(XPATH_prTitle);
     }
 
     public boolean isDisplayedLogoutBtn() {

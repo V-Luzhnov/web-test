@@ -1,13 +1,10 @@
 package org.hw6.mavi;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.hw5.PropertiesForTest;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -46,9 +43,7 @@ public abstract class AbstractTest {
         Assertions.assertDoesNotThrow( ()-> driver.navigate().to(getURL()), "Страница недоступна");
 
         // закрыть сообщение о куках, если оно есть, нажатием ОК
-        if (new MaviMainPage(getDriver()).isDisplayedCookiesInformBtn()) {
-            new MaviMainPage(getDriver()).clickCookiesInformBtn();
-        }
+        closeCookiesMessage();
     }
 
     @AfterAll
@@ -58,6 +53,25 @@ public abstract class AbstractTest {
 
     public static WebDriver getDriver() {
         return driver;
+    }
+
+    public void logout() {
+        if (new AccountMenu(getDriver()).isDisplayedLogoutBtn()) {
+            new AccountMenu(getDriver()).clickLogoutBtn();
+            new HeaderSide(getDriver()).clickHeaderAccBtn();
+        }
+    }
+
+    public void closeCookiesMessage() {
+        if (new CommonPages(getDriver()).isDisplayedCookiesInformBtn()) {
+            new CommonPages(getDriver()).clickCookiesInformBtn();
+        }
+    }
+
+    public void removeProductFromFavorites() {
+        if (new ProductPage(getDriver()).isDisplayedCardFavIsActiveBtn()) {
+            new ProductPage(getDriver()).clickCardFavIsActiveBtn();
+        }
     }
 
     private static void loadProperties() throws IOException {
