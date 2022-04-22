@@ -5,6 +5,12 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * Web UI Java. Homework 6
+ *
+ * @author Vitalii Luzhnov
+ * @version 22.04.2022
+ */
 public abstract class AbstractPage {
 
     private final WebDriver driver;

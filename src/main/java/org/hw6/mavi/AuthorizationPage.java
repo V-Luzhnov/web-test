@@ -1,23 +1,30 @@
 package org.hw6.mavi;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import static org.openqa.selenium.By.xpath;
-
+/**
+ * Web UI Java. Homework 6
+ *
+ * @author Vitalii Luzhnov
+ * @version 22.04.2022
+ */
 public class AuthorizationPage extends AbstractPage {
 
-    @FindBy(xpath = ".//input[@name='USER_LOGIN']")
+    private final String XPATH_login = ".//input[@name='USER_LOGIN']";
+    private final String XPATH_password = ".//input[@name='USER_PASSWORD']";
+    private final String XPATH_loginBtn = ".//button[@class='popup-login__btn-login']";
+
+    @FindBy(xpath = XPATH_login)
     private WebElement login;
 
-    @FindBy(xpath = ".//input[@name='USER_PASSWORD']")
+    @FindBy(xpath = XPATH_password)
     private WebElement password;
 
-    @FindBy(xpath = ".//button[@class='popup-login__btn-login']")
-    private WebElement login_button;
+    @FindBy(xpath = XPATH_loginBtn)
+    private WebElement loginBtn;
 
     public AuthorizationPage(WebDriver driver) {
         super(driver);
@@ -31,18 +38,17 @@ public class AuthorizationPage extends AbstractPage {
         this.password.clear();
     }
 
-    public void loginIn(StringBuilder login, StringBuilder password){
-
+    public void loginIn(StringBuilder login, StringBuilder password) {
+        clearLogin();
+        clearPassword();
         Actions loginIn = new Actions(getDriver());
         loginIn
                 .click(this.login)
                 .sendKeys(login)
                 .click(this.password)
                 .sendKeys(password)
-                .click(this.login_button)
+                .click(this.loginBtn)
                 .build()
                 .perform();
     }
-
-
 }
