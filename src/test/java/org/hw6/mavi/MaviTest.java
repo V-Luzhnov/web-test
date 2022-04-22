@@ -48,16 +48,10 @@ public class MaviTest extends AbstractTest {
 
         getDriver().navigate().to(getURL() + getURLbryuki());
 
-        // закрыть сообщение о куках, если оно есть, нажатием ОК
-        closeCookiesMessage();
-
         new ProductPage(getDriver()).clickSizeBtn();
         new ProductPage(getDriver()).clickAddToCardBtn();
 
         getDriver().navigate().to(getURL() + getURLfutbolki());
-
-        // закрыть сообщение о куках, если оно есть, нажатием ОК
-        closeCookiesMessage();
 
         new ProductPage(getDriver()).clickSizeBtn();
         new ProductPage(getDriver()).clickAddToCardBtn();

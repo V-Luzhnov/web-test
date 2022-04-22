@@ -48,7 +48,7 @@ public abstract class AbstractTest {
 
     @AfterAll
     static void close(){
-//        if(driver !=null) driver.quit();
+        if(driver !=null) driver.quit();
     }
 
     public static WebDriver getDriver() {
