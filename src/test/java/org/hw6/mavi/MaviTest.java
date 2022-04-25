@@ -43,7 +43,7 @@ public class MaviTest extends AbstractTest {
 
     @Test
     @Tag("Positive")
-    @DisplayName("Успешный добавление товара в корзину")
+    @DisplayName("Успешное добавление товара в корзину")
     public void addToCartTestPositive() throws InterruptedException, IOException {
 
         getDriver().navigate().to(getURL() + getURLbryuki());
@@ -66,7 +66,7 @@ public class MaviTest extends AbstractTest {
 
     @Test
     @Tag("Positive")
-    @DisplayName("Успешный добавление товара в избранное")
+    @DisplayName("Успешное добавление товара в избранное")
     public void addToFavoritesTestPositive() throws IOException, InterruptedException {
 
         getDriver().navigate().to(getURL() + getURLbryuki());
